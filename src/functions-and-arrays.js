@@ -1,19 +1,111 @@
 // Iteration #1: Find the maximum
 
+function maxOfTwoNumbers(a, b) {
+  
+  if (a < b) {
+    return b;    
+  } 
+  if (a > b) {
+    return a;
+  }else {
+    if(a==b)return a;
+  }
+}
+
 
 // Iteration #2: Find longest word
+
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
+
+function findLongestWord(words) {
+  let max = null;
+  let maxLength = 0;
+ 
+  for (let i = 0; i < words.length; i++) 
+  {
+    if (words[i].length > maxLength) 
+    {
+       maxLength = words[i].length;
+       max = words[i];
+    }
+    
+  }
+
+  return max; 
+}
+
+findLongestWord(words); 
+
+
 
 // Iteration #3: Calculate the sum
 
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
+function sumNumbers(numbers) {
+
+  let sum = 0;
+
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+
+  return sum;  
+}
+sumNumbers(numbers);
+
+
+
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
+//                                       should return null when an empty array is called
+
+function averageNumbers(numbersAvg) {
+  
+  let total = 0;
+  let count = 0;
+
+  
+  if (numbersAvg.length > 0) {
+    numbersAvg.forEach(function(item) {
+      total += item;
+      count++;
+    })
+    return total / count;
+
+  } else if (numbersAvg = ([])) {
+    return null
+  }
+};
+
+
+
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
+
+
+//                                     should return null if receives an empty array when called
+
+
+function averageWordLength(words){
+  
+  let sum = 0;
+    
+  for (let i = 0; i < words.length; i++){
+   sum += words[i].length;
+  }
+
+  let average = sum/words.length;
+
+  return average;
+  
+ }
+  
+averageWordLength(wordsArr);
+
+
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -30,8 +122,57 @@ const wordsUnique = [
   'bring'
 ];
 
+//                                     should return null if receives an empty array when called
+
+// remove the duplicates, and return a new array   
+// should return the correct uniqified array when an array of the same elements passed as argument
+// should return the same array when no element is repeated
+// should return the uniquified array
+
+function uniquifyArray() {
+
+  let duplicates = null;
+  
+  for (let i = 0; i < wordsUnique.length; i++) {
+  
+      if(duplicates.hasOwnProperty(wordsUnique[i])) {  
+          duplicates[wordsUnique[i]].push(i);
+          
+      } else if (wordsUnique.lastIndexOf(wordsUnique[i]) !== i) {
+          duplicates[wordsUnique[i]] = [i];
+      }
+  }
+
+  return duplicates;
+};
+
+
+
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
+
+//                                       should return null if receives an empty array
+
+function doesWordExist(wordsFind, word) {
+
+
+  let wordDoesntExist = false;
+  let wordExists = true;
+
+
+  for (let i = 0; i < wordsFind.length; i++) {
+    if (wordsFind[i] == word) {
+      return wordExists;
+
+    } 
+  }
+return wordDoesntExist
+};
+
+doesWordExist(wordsFind, word)
+
+
+
 
 // Iteration #7: Count repetition
 const wordsCount = [
@@ -48,9 +189,52 @@ const wordsCount = [
   'matter'
 ];
 
+//                           count repetition should return 0 if receives an empty array
+//                           count repetition should return 1 when word appears 1 time in the array
+
+
+function howManyTimes(wordsCount, word) {
+
+    let count = 0;
+    
+    for (let i = 0; i < wordsCount.length; i++)
+    {
+        if (word == wordsCount[i])
+        {
+            count++; 
+
+        }
+    return count;
+    }
+
+}
+
+howManyTimes(wordsCount, word);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Iteration #8: Bonus
 
-const matrix = [
+  const matrix = [
   [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
   [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
   [81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 3, 49, 13, 36, 65],
