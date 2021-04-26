@@ -34,7 +34,7 @@ function findLongestWord(words) {
   return max; 
 }
 
-findLongestWord(words); 
+
 
 
 
@@ -50,9 +50,78 @@ function sumNumbers(numbers) {
     sum += numbers[i];
   }
 
-  return sum;  
+  return sum;
 }
-sumNumbers(numbers);
+
+
+
+
+
+// #### Bonus - Iteration #3.1: A generic `sum()` function
+
+const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
+
+
+/*
+  it('should return zero if receives an empty array when called', () => {
+    expect(sum([])).toBe(0);
+  });
+
+  it('should return the sum with one number array', () => {
+    expect(sum([4])).toBe(4);
+  });
+
+  it('should return zero if all elements are zero', () => {
+    expect(sum([0, 0, 0, 0, 0])).toBe(0);
+  });
+
+  it('should return the sum when passed array of numbers', () => {
+    expect(sum([10, 5, 4, 32, 8])).toBe(59);
+  });
+
+  it('should return the sum when passed array of strings', () => {
+    expect(sum(['ana', 'marco', 'nicolas', 'tania', 'ptwd'])).toBe(24);
+  }); */
+
+   function sum(mixedArr) {
+  
+    let total = 0;
+
+  
+        for (let i = 0; i < mixedArr.length; i++) {
+                 
+          switch (typeof mixedArr[i]) {
+            case 'string':
+
+              total += mixedArr[i].length;
+
+              break;
+              case 'boolean':
+
+                total += Number(mixedArr[i]);
+
+              break;
+
+              case 'number':
+
+                total += mixedArr[i];
+
+              break;
+
+            default:
+                 throw new Error("Unsupported data type sir or ma'am");
+              break;
+          }
+  
+      }
+
+   
+    
+    return total;
+  }
+
+
+
 
 
 
@@ -60,50 +129,109 @@ sumNumbers(numbers);
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-//                                       should return null when an empty array is called
-
 function averageNumbers(numbersAvg) {
   
   let total = 0;
   let count = 0;
-
+  let average = null;
   
-  if (numbersAvg.length > 0) {
-    numbersAvg.forEach(function(item) {
-      total += item;
-      count++;
-    })
-    return total / count;
-
-  } else if (numbersAvg = ([])) {
-    return null
+  for (let i = 0; i < numbersAvg.length; i++) {
+    total +=  numbersAvg[i];
+    count++;
+    average = total / count;
   }
-};
+
+  return average;
+}
 
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-
-//                                     should return null if receives an empty array when called
-
-
 function averageWordLength(words){
   
   let sum = 0;
+  let average = null;
     
   for (let i = 0; i < words.length; i++){
    sum += words[i].length;
+   average = sum/words.length;
   }
 
-  let average = sum/words.length;
+  return average;
+}
+  
+
+
+// #### Bonus - Iteration #4.1: A generic `avg()` function
+
+
+/*
+ describe('Bonus: Calculate the average of a mixed elements array', () => {
+  it('should create a function named avg', () => {
+    expect(typeof avg).toBe('function');
+  });
+
+  it('should return null if receives an empty array when called', () => {
+    expect(avg([])).toBe(null);
+  });
+
+  it('should return the average of the array', () => {
+    // false is counted as 0
+    expect(avg([6, 12, 'miami', 1, 'barca', '200', 'lisboa', 8, false])).toBe(5.11);
+    // true is counted as 1
+    expect(avg([6, 12, 'miami', 1, 'barca', '200', 'lisboa', 8, true])).toBe(5.22);
+  });
+});
+
+*/
+
+function avg(arr) {
+
+  let total = 0;
+  let average = null;
+  let numerodevalores = 0;
+
+  
+  for (let i = 0; i < arr.length; i++)
+  {
+
+    switch (typeof arr[i])
+    {
+      case 'string':
+
+        total += arr[i].length;
+        numerodevalores++;
+
+        break;
+        
+        case 'boolean':
+
+          total += Number(arr[i]);
+          numerodevalores++;
+
+        break;
+
+        case 'number':
+
+          total += arr[i];
+          numerodevalores++;
+
+        break;
+
+        default:   
+        break;
+      
+    }
+    average = (total/numerodevalores).toFixed(2);
+    average = parseFloat(average);
+
+  } 
 
   return average;
-  
- }
-  
-averageWordLength(wordsArr);
+}
+
 
 
 
@@ -122,54 +250,35 @@ const wordsUnique = [
   'bring'
 ];
 
-//                                     should return null if receives an empty array when called
 
-// remove the duplicates, and return a new array   
-// should return the correct uniqified array when an array of the same elements passed as argument
-// should return the same array when no element is repeated
-// should return the uniquified array
+function uniquifyArray(wordsUnique) {
 
-function uniquifyArray() {
-
-  let duplicates = null;
+  let unique = (wordsUnique.length ==0?null:[]);
   
-  for (let i = 0; i < wordsUnique.length; i++) {
-  
-      if(duplicates.hasOwnProperty(wordsUnique[i])) {  
-          duplicates[wordsUnique[i]].push(i);
-          
-      } else if (wordsUnique.lastIndexOf(wordsUnique[i]) !== i) {
-          duplicates[wordsUnique[i]] = [i];
-      }
+  for (let i = 0; i < wordsUnique.length; i++) 
+  {
+     if(unique.indexOf(wordsUnique[i]) == -1)unique.push(wordsUnique[i]);
   }
-
-  return duplicates;
-};
+  return unique;
+}
 
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-//                                       should return null if receives an empty array
 
 function doesWordExist(wordsFind, word) {
 
-
-  let wordDoesntExist = false;
-  let wordExists = true;
-
+  let wordExists = (wordsFind.length==0?null:false);
 
   for (let i = 0; i < wordsFind.length; i++) {
-    if (wordsFind[i] == word) {
-      return wordExists;
+    
+    if(wordsFind[i] == word)wordExists = true; 
 
-    } 
   }
-return wordDoesntExist
-};
-
-doesWordExist(wordsFind, word)
+  return wordExists;
+}
 
 
 
@@ -189,9 +298,6 @@ const wordsCount = [
   'matter'
 ];
 
-//                           count repetition should return 0 if receives an empty array
-//                           count repetition should return 1 when word appears 1 time in the array
-
 
 function howManyTimes(wordsCount, word) {
 
@@ -204,28 +310,9 @@ function howManyTimes(wordsCount, word) {
             count++; 
 
         }
-    return count;
     }
-
+    return count;
 }
-
-howManyTimes(wordsCount, word);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
